@@ -95,50 +95,38 @@
 				<div class="inner">
 
 					<h3>Get in touch</h3>
-
 					<script>
 						// define the callAPI function that takes a first name and last name as parameters
-						var callAPI = (Name, Email, Message) => {
-							//instantiate a headers object
+						var callAPI = (firstName,lastName)=>{
+							// instantiate a headers object
 							var myHeaders = new Headers();
 							// add content type header to object
 							myHeaders.append("Content-Type", "application/json");
 							// using built in JSON utility package turn object to string and store in a variable
-							var raw = JSON.stringify({"Name":Name, "Email":Email, "Message":Message});
-							//create JSON object with parameters for api call and store in a variable
+							var raw = JSON.stringify({"firstName":firstName,"lastName":lastName});
+							// create a JSON object with parameters for API call and store in a variable
 							var requestOptions = {
 								method: 'POST',
 								headers: myHeaders,
 								body: raw,
-								redirect:'follow'
+								redirect: 'follow'
 							};
 							// make API call with parameters and use promises to get response
-							fetch("arn:aws:execute-api:us-east-1:413896723508:dd52cwt95j/*/POST/",requestOptions)
+							fetch("https://dd52cwt95j.execute-api.us-east-1.amazonaws.com/prod", requestOptions)
 							.then(response => response.text())
 							.then(result => alert(JSON.parse(result).body))
 							.catch(error => console.log('error', error));
-
 						}
 					</script>
+				</head>
+				<body>
 					<form>
-
-						<div class="field half first">
-							<label for="name">Name</label>
-							<input name="name" id="name" type="text" placeholder="Name">
-						</div>
-						<div class="field half">
-							<label for="email">Email</label>
-							<input name="email" id="email" type="email" placeholder="Email">
-						</div>
-						<div class="field">
-							<label for="message">Message</label>
-							<textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
-						</div>
-						<ul class="actions">
-							<li>						
-								<button type="button" onclick="callAPI(document.getElementById('name').value,document.getElementById('email').value,document.getElementById('message').value)">Submit</button>
-							</li>
-						</ul>
+						<label>First Name :</label>
+						<input type="text" id="fName">
+						<label>Last Name :</label>
+						<input type="text" id="lName">
+						<!-- set button onClick method to call function we defined passing input values as parameters -->
+						<button type="button" onclick="callAPI(document.getElementById('fName').value,document.getElementById('lName').value)">Call API</button>
 					</form>
 
 					<div class="copyright">

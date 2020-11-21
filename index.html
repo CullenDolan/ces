@@ -92,34 +92,30 @@
 
 		<!-- Footer -->
 			<footer id="footer">
-				<div class="inner">
-
-					<h3>Get in touch</h3>
-
+				<div class="card">
+					<div class="card-body">
+					<h2>My serverless form</h2>
 					<form action="" method="POST">
-
-						<div class="field half first">
-							<label for="name">Name</label>
-							<input name="name" id="name" type="text" placeholder="Name">
-						</div>
-						<div class="field half">
-							<label for="email">Email</label>
-							<input name="email" id="email" type="email" placeholder="Email">
-						</div>
-						<div class="field">
-							<label for="message">Message</label>
-							<textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
-						</div>
-						<ul class="actions">
-							<li><input value="Send Message" class="button alt" type="submit"></li>
-						</ul>
+					  <div class="form-group">
+						<label for="email">Email address</label>
+						<input type="email" class="form-control" id="email"  placeholder="Enter email">
+						<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+					  </div>
+				
+					  <div class="form-group">
+						<label for="name">Name</label>
+						<input type="name" class="form-control" id="name"  placeholder="Your name">
+					  </div>  
+				
+					  <div class="form-group">
+						<label for="name">Message</label>
+						<input type="name" class="form-control" id="message"  placeholder="Tell us something">
+					  </div>  
+					  <h4 id="response"></h4>
+					  <button type="submit" class="btn btn-primary">Submit</button>
 					</form>
-
-					<div class="copyright">
-						&copy; Cloud Engineering Solutions LLC
 					</div>
-
-				</div>
+				  </div>
 			</footer>
 
 		<!-- Scripts -->

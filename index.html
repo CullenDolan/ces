@@ -6,6 +6,29 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" /> <!-- how html file is connected -->
+		<script>
+			// define the callAPI function that takes a first name and last name as parameters
+			var callAPI = (Name,Email,Message)=>{
+				// instantiate a headers object
+				var myHeaders = new Headers();
+				// add content type header to object
+				myHeaders.append("Content-Type", "application/json");
+				// using built in JSON utility package turn object to string and store in a variable
+				var raw = JSON.stringify({"Name":Name,"Email":Email,"Message":Message});
+				// create a JSON object with parameters for API call and store in a variable
+				var requestOptions = {
+					method: 'POST',
+					headers: myHeaders,
+					body: raw,
+					redirect: 'follow'
+				};
+				// make API call with parameters and use promises to get response
+				fetch("https://90881om491.execute-api.us-east-1.amazonaws.com/prod", requestOptions)
+				.then(response => response.text())
+				.then(result => alert(JSON.parse(result).body))
+				.catch(error => console.log('error', error));
+			}
+		</script>
 	</head>
 	<body>
 
@@ -95,46 +118,21 @@
 				<div class="inner">
 
 					<h3>Get in touch</h3>
-					<script>
-						// define the callAPI function that takes a first name and last name as parameters
-						var callAPI = (Name,Email,Message)=>{
-							// instantiate a headers object
-							var myHeaders = new Headers();
-							// add content type header to object
-							myHeaders.append("Content-Type", "application/json");
-							// using built in JSON utility package turn object to string and store in a variable
-							var raw = JSON.stringify({"Name":Name,"Email":Email,"Message":Message});
-							// create a JSON object with parameters for API call and store in a variable
-							var requestOptions = {
-								method: 'POST',
-								headers: myHeaders,
-								body: raw,
-								redirect: 'follow'
-							};
-							// make API call with parameters and use promises to get response
-							fetch("https://90881om491.execute-api.us-east-1.amazonaws.com/prod", requestOptions)
-							.then(response => response.text())
-							.then(result => alert(JSON.parse(result).body))
-							.catch(error => console.log('error', error));
-						}
-					</script>
-				</head>
-				<body>
+
 					<form>
 						<label>Name</label>
 						<input type="text" id="Name">
 						<label>Email</label>
-						<input type="email" id="Email">
+						<input type="text" id="Email">
 						<label>Message</label>
 						<input type="text" id="Message">
 						<!-- set button onClick method to call function we defined passing input values as parameters -->
-						<button type="button" onclick="callAPI(document.getElementById('Name').value,document.getElementById('Email').valuedocument.getElementById('Message').value,)">Call API</button>
+						<button type="submit" onclick="callAPI(document.getElementById('Name').value,document.getElementById('Email').valuedocument.getElementById('Message').value,)">Call API</button>
 					</form>
 
 					<div class="copyright">
 						&copy; Cloud Engineering Solutions LLC
 					</div>
-
 				</div>
 			</footer>
 

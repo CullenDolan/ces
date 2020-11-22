@@ -6,6 +6,29 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<script>
+			// define the callAPI function that takes a first name and last name as parameters
+			var callAPI = (Name,Email,Message)=>{
+				// instantiate a headers object
+				var myHeaders = new Headers();
+				// add content type header to object
+				myHeaders.append("Content-Type", "application/json");
+				// using built in JSON utility package turn object to string and store in a variable
+				var raw = JSON.stringify({"Name":Name,"Email":Email,"Message":Message});
+				// create a JSON object with parameters for API call and store in a variable
+				var requestOptions = {
+					method: 'POST',
+					headers: myHeaders,
+					body: raw,
+					redirect: 'follow'
+				};
+				// make API call with parameters and use promises to get response
+				fetch("https://90881om491.execute-api.us-east-1.amazonaws.com/prod", requestOptions)
+				.then(response => response.text())
+				.then(result => alert(JSON.parse(result).body))
+				.catch(error => console.log('error', error));
+			}
+		</script>
 	</head>
 	<body class="subpage">
 
@@ -48,22 +71,22 @@
 
 					<h3>Get in touch</h3>
 
-					<form action="#" method="post">
-
+					<form action="https://90881om491.execute-api.us-east-1.amazonaws.com/prod" method="POST">
 						<div class="field half first">
-							<label for="name">Name</label>
-							<input name="name" id="name" type="text" placeholder="Name">
+							<label for="Name">Name</label>
+							<input name="Name" id="Name" type="text" placeholder="Name">
 						</div>
 						<div class="field half">
-							<label for="email">Email</label>
-							<input name="email" id="email" type="email" placeholder="Email">
+							<label for="Email">Email</label>
+							<input name="Email" id="Email" type="Email" placeholder="Email">
 						</div>
 						<div class="field">
-							<label for="message">Message</label>
-							<textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
+							<label for="Message">Message</label>
+							<textarea name="Message" id="Message" rows="6" placeholder="Message"></textarea>
 						</div>
+						<!-- set button onClick method to call function we defined passing input values as parameters -->
 						<ul class="actions">
-							<li><input value="Send Message" class="button alt" type="submit"></li>
+							<li><input onclick="callAPI(document.getElementById('Name').value,document.getElementById('Email').value,document.getElementById('Message').value)" value="Send Message" class="button alt" type="submit"></li>
 						</ul>
 					</form>
 

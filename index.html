@@ -97,13 +97,13 @@
 					<h3>Get in touch</h3>
 					<script>
 						// define the callAPI function that takes a first name and last name as parameters
-						var callAPI = (firstName,lastName)=>{
+						var callAPI = (Name,Email,Message)=>{
 							// instantiate a headers object
 							var myHeaders = new Headers();
 							// add content type header to object
 							myHeaders.append("Content-Type", "application/json");
 							// using built in JSON utility package turn object to string and store in a variable
-							var raw = JSON.stringify({"firstName":firstName,"lastName":lastName});
+							var raw = JSON.stringify({"Name":Name,"Email":Email,"Message":Message});
 							// create a JSON object with parameters for API call and store in a variable
 							var requestOptions = {
 								method: 'POST',
@@ -112,7 +112,7 @@
 								redirect: 'follow'
 							};
 							// make API call with parameters and use promises to get response
-							fetch("https://dd52cwt95j.execute-api.us-east-1.amazonaws.com/prod", requestOptions)
+							fetch("https://90881om491.execute-api.us-east-1.amazonaws.com/prod", requestOptions)
 							.then(response => response.text())
 							.then(result => alert(JSON.parse(result).body))
 							.catch(error => console.log('error', error));
@@ -121,12 +121,14 @@
 				</head>
 				<body>
 					<form>
-						<label>First Name :</label>
-						<input type="text" id="fName">
-						<label>Last Name :</label>
-						<input type="text" id="lName">
+						<label>Name</label>
+						<input type="text" id="Name">
+						<label>Email</label>
+						<input type="email" id="Email">
+						<label>Message</label>
+						<input type="text" id="Message">
 						<!-- set button onClick method to call function we defined passing input values as parameters -->
-						<button type="button" onclick="callAPI(document.getElementById('fName').value,document.getElementById('lName').value)">Call API</button>
+						<button type="button" onclick="callAPI(document.getElementById('Name').value,document.getElementById('Email').valuedocument.getElementById('Message').value,)">Call API</button>
 					</form>
 
 					<div class="copyright">
@@ -145,3 +147,5 @@
 	</body>
 </html>
 
+<!-- API URL https://90881om491.execute-api.us-east-1.amazonaws.com/prod -->
+<!-- dynamodb ARN arn:aws:dynamodb:us-east-1:413896723508:table/ContactDatabase -->

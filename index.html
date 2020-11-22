@@ -94,7 +94,7 @@
 							</header>
 							<p>Create custom cloud based solutions <br />to meet your business needs, including<br />websites, applications, and storage solutions</p>
 							<footer>
-								<a href="#" class="button">Learn More</a>
+								<a href="solutions.html" class="button">Learn More</a>
 							</footer>
 						</article>
 						<article>
@@ -104,9 +104,9 @@
 							<header>
 								<h3>Deploy</h3>
 							</header>
-							<p>Cloud providers offer many tools <br />but they can be dificult to navigate.<br />I provide handle all the steps to<br /> deploy your needs to customers.</p>
+							<p>Cloud providers offer many tools but they<br />can be dificult to navigate.I handle<br /> all the steps to deploy your needs to customers.</p>
 							<footer>
-								<a href="#" class="button">Learn More</a>
+								<a href="solutions.html" class="button">Learn More</a>
 							</footer>
 						</article>
 					</div>
@@ -120,14 +120,22 @@
 					<h3>Get in touch</h3>
 
 					<form>
-						<label>Name</label>
-						<input type="text" id="Name">
-						<label>Email</label>
-						<input type="text" id="Email">
-						<label>Message</label>
-						<input type="text" id="Message">
+						<div class="field half first">
+							<label for="Name">Name</label>
+							<input name="Name" id="Name" type="text" placeholder="Name">
+						</div>
+						<div class="field half">
+							<label for="Email">Email</label>
+							<input name="Email" id="Email" type="Email" placeholder="Email">
+						</div>
+						<div class="field">
+							<label for="Message">Message</label>
+							<textarea name="Message" id="Message" rows="6" placeholder="Message"></textarea>
+						</div>
 						<!-- set button onClick method to call function we defined passing input values as parameters -->
-						<button type="submit" onclick="callAPI(document.getElementById('Name').value,document.getElementById('Email').valuedocument.getElementById('Message').value,)">Call API</button>
+						<ul class="actions">
+							<li><input onclick="callAPI(document.getElementById('Name').value,document.getElementById('Email').valuedocument.getElementById('Message').value,)" value="Send Message" class="button alt" type="submit"></li>
+						</ul>
 					</form>
 
 					<div class="copyright">

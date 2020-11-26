@@ -7,58 +7,27 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<script>
-			function submitToAPI(e) {
-				e.preventDefault();
-				var URL = "https://6j76jk3723.execute-api.us-east-1.amazonaws.com/prod";
-
-						var Namere = /[A-Za-z]{1}[A-Za-z]/;
-						if (!Namere.test($("#Name").val())) {
-									alert ("Name can not less than 2 char");
-							return;
-						}
-
-						
-						if ($("#email").val()=="") {
-							alert ("Please enter your email id");
-							return;
-						}
-
-						var reeamil = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
-						if (!reeamil.test($("#email").val())) {
-							alert ("Please enter valid email address");
-							return;
-						}
-
-				var name = $("name").val();
-				var email = $("email").val();
-				var desc = $("message").val();
-				var data = {
-					name : name,
-					email : email,
-					desc : desc
-					};
-
-				$.ajax({
-					type: "POST",
-					url : "https://6j76jk3723.execute-api.us-east-1.amazonaws.com/prod",
-					dataType: "json",
-					crossDomain: "true",
-					contentType: "application/json; charset=utf-8",
-					data: JSON.stringify(data),
-
-					
-					success: function () {
-					// clear form and show a success message
-					alert("Successful");
-					document.getElementById("contact-form").reset();
-				location.reload();
-					},
-					error: function () {
-					// show an error message
-					alert("Unsuccessful");
-					}});
-		}
-     
+			// define the callAPI function that takes a first name and last name as parameters
+			var callAPI = (Name,email,Message)=>{
+				// instantiate a headers object
+				var myHeaders = new Headers();
+				// add content type header to object
+				myHeaders.append("Content-Type", "application/json");
+				// using built in JSON utility package turn object to string and store in a variable
+				var raw = JSON.stringify({"Name":Name,"email":email,"Message":Message});
+				// create a JSON object with parameters for API call and store in a variable
+				var requestOptions = {
+					method: 'POST',
+					headers: myHeaders,
+					body: raw,
+					redirect: 'follow'
+				};
+				// make API call with parameters and use promises to get response
+				fetch("https://90881om491.execute-api.us-east-1.amazonaws.com/prod", requestOptions)
+				.then(response => response.text())
+				.then(result => alert(JSON.parse(result).body))
+				.catch(error => console.log('error', error));
+			}
 		</script>
 	</head>
 	<body class="subpage">
@@ -102,10 +71,10 @@
 
 					<h3>Get in touch</h3>
 
-					<form id="contact-form"  method="POST">
+					<form action="https://90881om491.execute-api.us-east-1.amazonaws.com/prod" method="POST">
 						<div class="field half first">
-							<label for="Name">Your Name</label>
-							<input name="Name" id="name" type="text" placeholder="Name">
+							<label for="Name">Name</label>
+							<input name="Name" id="Name" type="text" placeholder="Name">
 						</div>
 						<div class="field half">
 							<label for="email">Email</label>
@@ -113,11 +82,11 @@
 						</div>
 						<div class="field">
 							<label for="Message">Message</label>
-							<textarea name="Message" id="message" rows="6" placeholder="Message"></textarea>
+							<textarea name="Message" id="Message" rows="6" placeholder="Message"></textarea>
 						</div>
 						<!-- set button onClick method to call function we defined passing input values as parameters -->
 						<ul class="actions">
-							<li><input onclick="submitToAPI(event)" value="Send Message" class="button alt" type="submit"></li>
+							<li><input onclick="callAPI(document.getElementById('Name').value,document.getElementById('email').value,document.getElementById('Message').value)" value="Send Message" class="button alt" type="submit"></li>
 						</ul>
 					</form>
 

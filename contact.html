@@ -8,13 +8,13 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<script>
 			// define the callAPI function that takes a first name and last name as parameters
-			var callAPI = (Name,Email,Message)=>{
+			var callAPI = (Name,email,Message)=>{
 				// instantiate a headers object
 				var myHeaders = new Headers();
 				// add content type header to object
 				myHeaders.append("Content-Type", "application/json");
 				// using built in JSON utility package turn object to string and store in a variable
-				var raw = JSON.stringify({"Name":Name,"Email":Email,"Message":Message});
+				var raw = JSON.stringify({"Name":Name,"email":email,"Message":Message});
 				// create a JSON object with parameters for API call and store in a variable
 				var requestOptions = {
 					method: 'POST',
@@ -69,8 +69,8 @@
 							<input name="Name" id="Name" type="text" placeholder="Name">
 						</div>
 						<div class="field half">
-							<label for="Email">Email</label>
-							<input name="Email" id="Email" type="email" placeholder="Email">
+							<label for="email">Email</label>
+							<input name="email" id="email" type="email" placeholder="Email" pattern=".+@globex.com">
 						</div>
 						<div class="field">
 							<label for="Message">Message</label>
@@ -78,7 +78,7 @@
 						</div>
 						<!-- set button onClick method to call function we defined passing input values as parameters -->
 						<ul class="actions">
-							<li><input onclick="callAPI(document.getElementById('Name').value,document.getElementById('Email').value,document.getElementById('Message').value)" value="Send Message" class="button alt" type="submit"></li>
+							<li><input onclick="callAPI(document.getElementById('Name').value,document.getElementById('email').value,document.getElementById('Message').value)" value="Send Message" class="button alt" type="submit"></li>
 						</ul>
 					</form>
 

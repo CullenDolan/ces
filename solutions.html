@@ -7,57 +7,58 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<script>
-function submitToAPI(e) {
-       e.preventDefault();
-       var URL = "https://6j76jk3723.execute-api.us-east-1.amazonaws.com/prod";
+			function submitToAPI(e) {
+				e.preventDefault();
+				var URL = "https://6j76jk3723.execute-api.us-east-1.amazonaws.com/prod";
 
-            var Namere = /[A-Za-z]{1}[A-Za-z]/;
-            if (!Namere.test($("#Name").val())) {
-                         alert ("Name can not less than 2 char");
-                return;
-            }
+						var Namere = /[A-Za-z]{1}[A-Za-z]/;
+						if (!Namere.test($("#Name").val())) {
+									alert ("Name can not less than 2 char");
+							return;
+						}
 
-            }
-            if ($("#email").val()=="") {
-                alert ("Please enter your email id");
-                return;
-            }
+						
+						if ($("#email").val()=="") {
+							alert ("Please enter your email id");
+							return;
+						}
 
-            var reeamil = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
-            if (!reeamil.test($("#email").val())) {
-                alert ("Please enter valid email address");
-                return;
-            }
+						var reeamil = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
+						if (!reeamil.test($("#email").val())) {
+							alert ("Please enter valid email address");
+							return;
+						}
 
-       var name = $("#Name").val();
-       var email = $("#email").val();
-       var desc = $("#Message").val();
-       var data = {
-          name : name,
-          email : email,
-          desc : desc
-        };
+				var name = $("#Name").val();
+				var email = $("#email").val();
+				var desc = $("#Message").val();
+				var data = {
+					name : name,
+					email : email,
+					desc : desc
+					};
 
-       $.ajax({
-         type: "POST",
-         url : "https://6j76jk3723.execute-api.us-east-1.amazonaws.com/prod",
-         dataType: "json",
-         crossDomain: "true",
-         contentType: "application/json; charset=utf-8",
-         data: JSON.stringify(data),
+				$.ajax({
+					type: "POST",
+					url : "https://6j76jk3723.execute-api.us-east-1.amazonaws.com/prod",
+					dataType: "json",
+					crossDomain: "true",
+					contentType: "application/json; charset=utf-8",
+					data: JSON.stringify(data),
 
-         
-         success: function () {
-           // clear form and show a success message
-           alert("Successfull");
-           document.getElementById("contact-form").reset();
-       location.reload();
-         },
-         error: function () {
-           // show an error message
-           alert("UnSuccessfull");
-         }});
-     }
+					
+					success: function () {
+					// clear form and show a success message
+					alert("Successful");
+					document.getElementById("contact-form").reset();
+				location.reload();
+					},
+					error: function () {
+					// show an error message
+					alert("Unsuccessful");
+					}});
+		}
+     
 		</script>
 	</head>
 	<body class="subpage">

@@ -29,9 +29,9 @@
 							return;
 						}
 
-				var name = $("#Name").val();
-				var email = $("#email").val();
-				var desc = $("#Message").val();
+				var name = $("name").val();
+				var email = $("email").val();
+				var desc = $("message").val();
 				var data = {
 					name : name,
 					email : email,
@@ -102,10 +102,10 @@
 
 					<h3>Get in touch</h3>
 
-					<form id="contact-form" action="https://6j76jk3723.execute-api.us-east-1.amazonaws.com/prod" method="POST">
+					<form id="contact-form"  method="POST">
 						<div class="field half first">
 							<label for="Name">Your Name</label>
-							<input name="Name" id="Name" type="text" placeholder="Name">
+							<input name="Name" id="name" type="text" placeholder="Name">
 						</div>
 						<div class="field half">
 							<label for="email">Email</label>
@@ -113,7 +113,7 @@
 						</div>
 						<div class="field">
 							<label for="Message">Message</label>
-							<textarea name="Message" id="Message" rows="6" placeholder="Message"></textarea>
+							<textarea name="Message" id="message" rows="6" placeholder="Message"></textarea>
 						</div>
 						<!-- set button onClick method to call function we defined passing input values as parameters -->
 						<ul class="actions">

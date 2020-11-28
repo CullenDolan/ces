@@ -27,6 +27,7 @@
 				.then(response => response.text())
 				.then(result => alert(JSON.parse(result).body))
 				.catch(error => console.log('error', error));
+				$('#contactform')[0].reset();
 			}
 		</script>
 	</head>
@@ -63,7 +64,7 @@
 
 					<h3>Get in touch</h3>
 
-					<form action="https://90881om491.execute-api.us-east-1.amazonaws.com/prod" method="POST">
+					<form id="contactform" action="https://90881om491.execute-api.us-east-1.amazonaws.com/prod" method="POST">
 						<div class="field half first">
 							<label for="Name">Name</label>
 							<input name="Name" id="Name" type="text" placeholder="Name">
@@ -78,7 +79,7 @@
 						</div>
 						<!-- set button onClick method to call function we defined passing input values as parameters -->
 						<ul class="actions">
-							<li><input onclick="callAPI(document.getElementById('Name').value,document.getElementById('email').value,document.getElementById('Message').value)" value="Send Message" class="button alt" type="submit"></li>
+							<li><input onclick="callAPI(document.getElementById('Name').value,document.getElementById('email').value,document.getElementById('Message').value)" value="Send Message" class="button alt" type="button" id="btnsumbit"></li>
 						</ul>
 					</form>
 

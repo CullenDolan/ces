@@ -27,7 +27,6 @@
 				.then(response => response.text())
 				.then(result => alert(JSON.parse(result).body))
 				.catch(error => console.log('error', error));
-				// $("#contact-form")[0].reset();
 			}
 		</script>
 	</head>
@@ -72,7 +71,7 @@
 
 					<h3>Get in touch</h3>
 
-					<form action="https://90881om491.execute-api.us-east-1.amazonaws.com/prod" method="POST" id="contact-form">
+					<form action="https://90881om491.execute-api.us-east-1.amazonaws.com/prod" method="POST" >
 						<div class="field half first">
 							<label for="Name">Name</label>
 							<input name="Name" id="Name" type="text" placeholder="Name">
